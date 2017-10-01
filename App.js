@@ -90,16 +90,71 @@ import { GiftedChat } from 'react-native-gifted-chat';
 
 export default class App extends React.Component {
 
-	_onPressButton() {
-		console.log('BUTTON'); 
+	state = {
+		key: "",
+		graph: []
+	}
+
+	componentWillMount() {
+		this.setState({
+
+			key: "organisms",
+			graph: [
+				{"name": "cells", "place": {top: 49.6074, left: 80.9159}, "func": ()=>{this._onPressButton1()} },
+				{"name": "sex", "place": {top: 109.171, left: 82.0384}, "func": ()=>{console.log("chat of sex")}},
+				{"name": "plants", "place": {top: 25.319, left: -81.7774}, "func": ()=>{console.log("chat of plants")}},
+				{"name": "immune system", "place": {top: 121.382, left: -82.8285}, "func": ()=>{console.log("chat of immune system")}}
+			]
+
+		});
+	}
+
+	_onPressButton1() {
+		console.log("hello")
+		this.setState ({
+			key: "plants", 
+			graph: [ 
+				{"name": "hydroponics","place":{"top":2.55137,"left":-61.0646}, "func": ()=>{console.log("chat of hydroponics")}},
+				{"name": "photosynthesis","place":{"top":82.2621,"left":74.2979}, "func": ()=>{console.log("chat of photosynthesis")}}
+			]
+		})
+	}
+	_onPressButton2() {
+		console.log('BUTTON2'); 
+	}
+	_onPressButton3() {
+		console.log('BUTTON3'); 
+	}
+	_onPressButton4() {
+		console.log('BUTTON4'); 
+	}
+
+	nodefromkey(keytext) {
+		return (<TouchableHighlight onPress={()=>{this._onPressButton4()}}>
+					<Text>{keytext}</Text>
+				</TouchableHighlight>)
+	}
+
+	keynode() {
+		return this.nodefromkey(this.state.key)
+	}
+
+	nodefromgraph(node) {
+		console.log(JSON.stringify(node))
+		return (<TouchableHighlight key={node.name} style={{top: node.place.top, left: node.place.left}} onPress={node.func}>
+					<Text>{node.name}</Text>
+				</TouchableHighlight>)
+	}
+
+	children() {
+		return this.state.graph.map(this.nodefromgraph)
 	}
 
 	render() {
 		return (
 			<View style={styles.container}>
-				<TouchableHighlight onPress={this._onPressButton}>
-					<Text>Hellooooo</Text>
-				</TouchableHighlight>
+				{this.keynode()}
+				{this.children()}
 			</View>
 		)
 	}
@@ -113,3 +168,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+<TouchableHighlight onPress={this._onPressButton1}>
+					<Text>organisms</Text>
+				</TouchableHighlight>
+				
