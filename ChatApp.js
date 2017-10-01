@@ -15,43 +15,19 @@ export default class App extends React.Component {
 		currentConnections: {}
 	};
 
-	// static navigationOptions = ({ navigation }) => ({
-	// 	// var data =  
-
-	// 	var numofmessages = this.state.messages.length; 
-
-	// 	var message = {
-	// 		_id: numofmessages+1,
-	// 		text: navigation.state.params.data.message,
-	// 		createdAt: new Date(),
-	// 			user: bot,
-	// 	}
-
-	// 	this.setState((previousState) => ({
-	// 		messages: GiftedChat.append(previousState.messages, message),
-	// 	}));
-
-	// });
-
 	componentWillMount() {
 		this.setState({
 
 			messages: [
 				{
 					_id: 1,
-					text: 'Hello learner',
-					createdAt: new Date(),
-					user: bot,
-				},{
-					_id: 2,
-					text: 'say "GALAXY" to explore the current topic',
+					text: 'search for a topic to learn about, then say "GALAXY" to explore the topic',
 					createdAt: new Date(),
 					user: bot,
 				},
 			],
 
 		});
-		// this.gotonext()
 	}
 
 	async gotonext() {
@@ -70,7 +46,6 @@ export default class App extends React.Component {
 
 		try {
 			responseText = this.sendtoserver(messages[0].text); 
-			// console.log(responseText)
 		} catch (error) {
 			console.log(error); 
 		}
@@ -94,8 +69,7 @@ export default class App extends React.Component {
 			currentConnections: data.explore_terms
 		}));
 
-		console.log("chatapp curr conn \n" + JSON.stringify(this.state.currentConnections)); 
-		
+		// console.log("chatapp curr conn \n" + JSON.stringify(this.state.currentConnections)); 
 	}
 
 	newmessage(text) {

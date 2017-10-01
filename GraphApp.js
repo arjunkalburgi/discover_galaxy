@@ -24,49 +24,16 @@ export default class App extends React.Component {
 
 		this.props.navigation.state.params.buttonClicked(text); 
 		this.props.navigation.goBack()
-
-
-		// const response = await fetch("https://backgalaxy.crumb33.hasura-app.io/messages/" + encodeURI(text)); 
-		// const response = await fetch("http://localhost:8080/messages/" + encodeURI(text)); 
-		// const data = await response.json(); 
-
-		// this.props.navigation.navigate('ChatApp', {response: data})
-
-		// this.setState({
-
-		// 	parent: data.explore_terms.parent,
-		// 	key: data.explore_terms.key,
-		// 	graph: data.explore_terms.graph
-
-		// });
-
-
-		// console.log(this.state.messages)
-
-	}
-
-
-	_onPressButton1() {
-		console.log("hello")
-		this.setState ({
-
-			parent: "organisms",
-			key: "plants", 
-			graph: [ 
-				{"name": "hydroponics","place":{"top":2.55137,"left":-61.0646}, "func": ()=>{console.log("chat of hydroponics")}},
-				{"name": "photosynthesis","place":{"top":82.2621,"left":74.2979}, "func": ()=>{console.log("chat of photosynthesis")}}
-			]
-		})
 	}
 
 	nodefromparent(keytext) {
-		return (<TouchableOpacity style={{top: -100}} onPress={()=>{this.sendtoserver({keytext})}}>
+		return (<TouchableOpacity style={{top: -100}} onPress={()=>{this.sendtoserver(keytext)}}>
 					<Text>{keytext}</Text>
 				</TouchableOpacity>)
 	}
 
 	nodefromkey(keytext) {
-		return (<TouchableOpacity onPress={()=>{this.sendtoserver({keytext})}}>
+		return (<TouchableOpacity onPress={()=>{this.sendtoserver(keytext)}}>
 					<Text>{keytext}</Text>
 				</TouchableOpacity>)
 	}
@@ -75,9 +42,9 @@ export default class App extends React.Component {
 		return this.nodefromkey(this.state.key)
 	}
 
-	nodefromgraph(node) {
+	nodefromgraph(node, i) {
 		// console.log(JSON.stringify(node))
-		return (<TouchableOpacity key={node.name} 
+		return (<TouchableOpacity key={i} 
 									style={{top: node.place.top, left: node.place.left}} 
 									onPress={ () => this.sendtoserver(node.name) }>
 					<Text>{node.name}</Text>
@@ -85,7 +52,7 @@ export default class App extends React.Component {
 	}
 
 	children() {
-		return this.state.graph.map(node=>this.nodefromgraph(node))
+		return this.state.graph.map((node, index)=>this.nodefromgraph(node, index))
 	}
 
 	parent() {
