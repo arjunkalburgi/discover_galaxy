@@ -5,6 +5,10 @@ const remote = 'https://dncache-mauganscorp.netdna-ssl.com/thumbseg/26/26111-big
 
 export default class App extends React.Component {
 
+	static navigationOptions = {
+		header: null
+	};
+	
 	state = {
 		parent: "",
 		key: "",
