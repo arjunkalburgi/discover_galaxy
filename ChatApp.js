@@ -4,11 +4,15 @@ import { GiftedChat } from 'react-native-gifted-chat';
 
 const bot = {
 				_id: 2,
-				name: 'React Native',
-				avatar: 'https://facebook.github.io/react/img/logo_og.png',
+				name: 'GALAXY',
+				avatar: 'http://apodapp.com/images/icon_googleplay.png',
 			}; 
 
 export default class App extends React.Component {
+
+	static navigationOptions = {
+		header: null
+	};
 
 	state = {
 		messages: [],

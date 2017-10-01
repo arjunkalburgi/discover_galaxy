@@ -27,13 +27,13 @@ export default class App extends React.Component {
 	}
 
 	nodefromparent(keytext) {
-		return (<TouchableOpacity style={{top: -100}} onPress={()=>{this.sendtoserver(keytext)}}>
-					<Text>{keytext}</Text>
+		return (<TouchableOpacity style={[othernodes.wrapper, {top: -100}]} onPress={()=>{this.sendtoserver(keytext)}}>
+					<Text style={{color: '#fff'}}>{keytext}</Text>
 				</TouchableOpacity>)
 	}
 
 	nodefromkey(keytext) {
-		return (<TouchableOpacity onPress={()=>{this.sendtoserver(keytext)}}>
+		return (<TouchableOpacity style={[currnode.wrapper]} onPress={()=>{this.sendtoserver(keytext)}}>
 					<Text>{keytext}</Text>
 				</TouchableOpacity>)
 	}
@@ -45,9 +45,9 @@ export default class App extends React.Component {
 	nodefromgraph(node, i) {
 		// console.log(JSON.stringify(node))
 		return (<TouchableOpacity key={i} 
-									style={{top: node.place.top, left: node.place.left}} 
+									style={[othernodes.wrapper, {top: node.place.top, left: node.place.left}]} 
 									onPress={ () => this.sendtoserver(node.name) }>
-					<Text>{node.name}</Text>
+					<Text style={{color: '#fff', textAlign: 'center'}}>{node.name}</Text>
 				</TouchableOpacity>)
 	}
 
@@ -78,3 +78,25 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+const currnode = StyleSheet.create({
+    wrapper: {
+      padding: 5,
+      borderRadius: 15,
+      borderColor: '#000',
+      borderWidth: 2,
+      backgroundColor: '#fff',
+      // minHeight: 20,
+    },
+}); 
+
+const othernodes = StyleSheet.create({
+    wrapper: {
+      padding: 5,
+      borderWidth: 2,
+      borderRadius: 15,
+      borderColor: '#4c0f67',
+      backgroundColor: '#ae57bf',
+      // minHeight: 20,
+    }
+}); 
