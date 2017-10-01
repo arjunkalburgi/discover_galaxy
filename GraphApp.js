@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, Alert, Image } from 'react-native';
-const remote = 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Polycyclic_Aromatic_Hydrocarbons_In_Space.jpg';
+// const remote = 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Polycyclic_Aromatic_Hydrocarbons_In_Space.jpg';
+const remote = 'https://dncache-mauganscorp.netdna-ssl.com/thumbseg/26/26111-bigthumbnail.jpg'; 
 
 export default class App extends React.Component {
 
