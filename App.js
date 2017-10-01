@@ -6,19 +6,20 @@ import ChatApp from './ChatApp';
 import GraphApp from './GraphApp';
 
 
-export default StackNavigator({
+const App = StackNavigator({
   ChatApp: {screen: ChatApp},
-  GraphApp: {screen: GraphApp},
+  GraphApp: {screen: GraphApp, navigationOptions: ({navigation}) => ({ graph: `${navigation.state.params.name}` }) },
 });
 
 
-class App extends React.Component {
-
+export default class extends React.Component {
+	state = {
+		messages: [],
+		currentConnections: {}
+	};
 	render() {
 		return (
-			<View style={styles.container}>
-				<BasicApp />
-			</View>
+			<App />
 		)
 	}
 }

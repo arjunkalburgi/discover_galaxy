@@ -10,33 +10,35 @@ export default class App extends React.Component {
 	}
 
 	componentWillMount() {
+		// console.warn(JSON.stringify(this.props.navigation.state.params.connections))
 		this.setState({
 
-			parent: "biology",
-			key: "organisms",
-			graph: [
-				{"name": "cells", "place": {top: 49.6074, left: 80.9159}, "func": ()=>{this._onPressButton1()} },
-				{"name": "sex", "place": {top: 109.171, left: 82.0384}, "func": ()=>{console.log("chat of sex")}},
-				{"name": "plants", "place": {top: 25.319, left: -81.7774}, "func": ()=>{console.log("chat of plants")}},
-				{"name": "immune system", "place": {top: 121.382, left: -82.8285}, "func": ()=>{console.log("chat of immune system")}}
-			]
+			parent: this.props.navigation.state.params.connections.parent,
+			key: this.props.navigation.state.params.connections.key,
+			graph: this.props.navigation.state.params.connections.graph
 
 		});
 	}
 
 	async sendtoserver(text) {
+
+		this.props.navigation.state.params.buttonClicked(text); 
+		this.props.navigation.goBack()
+
+
 		// const response = await fetch("https://backgalaxy.crumb33.hasura-app.io/messages/" + encodeURI(text)); 
-		const response = await fetch("http://localhost:8080/messages/" + encodeURI(text)); 
-		const data = await response.json(); 
+		// const response = await fetch("http://localhost:8080/messages/" + encodeURI(text)); 
+		// const data = await response.json(); 
 
+		// this.props.navigation.navigate('ChatApp', {response: data})
 
-		this.setState({
+		// this.setState({
 
-			parent: data.explore_terms.parent,
-			key: data.explore_terms.key,
-			graph: data.explore_terms.graph
+		// 	parent: data.explore_terms.parent,
+		// 	key: data.explore_terms.key,
+		// 	graph: data.explore_terms.graph
 
-		});
+		// });
 
 
 		// console.log(this.state.messages)
