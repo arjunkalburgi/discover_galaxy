@@ -56,6 +56,7 @@ export default class App extends React.Component {
 	}
 
 	async sendtoserver(text) {
+		// const response = await fetch("http://localhost:8080/messages/" + encodeURI(text)); 
 		const response = await fetch("https://backgalaxy.crumb33.hasura-app.io/messages/" + encodeURI(text)); 
 		const data = await response.json(); 
 
